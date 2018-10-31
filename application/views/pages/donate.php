@@ -1,0 +1,77 @@
+<?php
+ $Video_ID=$this->session->userdata['Video_ID'];
+?>
+<div class="container middle paper-craft-middle">
+    <div class="row video-img">
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			 <?php if ($this->session->flashdata('success')) { ?>
+				<div class="alert alert-success alert-dismissable" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span><?php echo $this->session->flashdata('success'); ?></span>
+                </div>
+            <?php }if ($this->session->flashdata('danger')) { ?>
+                <div class="alert alert-danger alert-dismissable" role="alert">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <span><?php echo $this->session->flashdata('danger'); ?></span>
+                </div>
+            <?php } ?>
+		</div>
+		<div class="col-md-offset-0 col-md-4">
+		<div class="row back-row">
+			<div class="col-xs-6" style="text-align: left;">
+				<a href="#" onclick="history.back();" style="color:#000;"><span class="fa fa-arrow-left"></span></a>&nbsp; <b>Donate</b>
+			</div>
+			 <div class="col-xs-6" style="font-size: 22px;text-align: right;">
+			  <a href="<?php if($iscampaign == 1){  echo base_url('Video_curl/campaign/'.$Video_ID); }else{ echo base_url('Video_curl/video/'.$Video_ID); }?>" style="color:#000;"><span class="fa fa-home"></span></a>
+			</div>
+		</div>
+		</div>
+	</div>
+	<div class="row" id="donate"> 
+		<div class="col-md-offset-0 col-md-4 col-xs-12"  style="background-color: whitesmoke;">
+			<div class="agileits-login" style="font-size: 13px;">
+			<form class="form-horizontal" method="post" action="<?php echo base_url('Donate/store_donate');?>">
+				<!-- <div class="form-group">
+					<div class="control-label col-sm-12">Donation $</div>
+					<div class="col-sm-12" style="margin-top: 10px;">
+						<input type="number" class="form-control" name="amount" maxlength="20" id="amount" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Amt" />
+						<input type="hidden" name="video_id" value="<?php echo $Video_ID;?>"/>
+					</div>
+				</div> -->
+				<div class="form-group">
+					<div class="control-label col-sm-12">Contact Info</div>
+					<div class="col-sm-12" style="margin-top: 10px;"> 
+						 <input type="hidden" name="video_id" value="<?php echo $this->session->userdata('Video_ID');?>" />
+                            <input type="hidden" name="user_id" value="<?php echo $this->session->userdata('User_ID');?>" />
+						<input type="email" class="form-control" required="" name="email" id="email" maxlength="60" placeholder="Email ID" />
+						<input type="number" class="form-control" required="" name="mobile" maxlength="11" id="amount" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Mobile" />
+						<div class="checkbox">
+							<label>
+							<input type="checkbox" name="offers-true" value="true" /> Accept to Receive offers and Promotions.</label>
+						</div>
+					</div>
+				</div>
+				<div class="form-group"> 
+					<div class="control-label col-sm-12">Payment Gateway</div>
+					<div class="col-sm-12">
+					  <div class="radio">
+						<label class="background-color: #fff">
+						<input type="radio" name="stripe-true" value="true"/> Ning - Accept all Credit/Debit cards</label>
+					  </div>
+					   <div class="checkbox">
+						<label><input type="checkbox" name="donor-true" value="true" /> I want to be an anonymous donor.</label>
+					  </div>
+					</div>
+				</div>
+				<div class="form-group" style="background: transparent;">
+				<div class="w3ls-submit" style="background-color: #8B008B;"> 
+					<input type="submit" name="donation" id="donation" style="color: white !important;" value="INVOICE DONATION" />  	
+				</div>	
+				</div>	
+			</form>	
+			</div>
+		</div>
+	</div>
+</div>
